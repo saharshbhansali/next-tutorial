@@ -48,17 +48,21 @@ export async function createInvoice(formData: FormData) {
 const UpdateInvoice = InvoiceSchema.omit({id:true, date: true });
 
 export async function updateInvoice(uuid: string, formData: FormData) {
-
+  
+  // const { id, customerId, amount, status } = UpdateInvoice.parse({
   const {customerId, amount, status } = UpdateInvoice.parse({
     // id: formData.get('id'),
     customerId: formData.get('customerId'),
     amount: formData.get('amount'),
     status: formData.get('status'),
   });
-  // console.log({id, customerId, amount, status})
+  const amountInCents = amount * 100;
+
+  // console.log({uuid, id, customerId, amountInCents, status})
   console.log({uuid, customerId, amount, status})
 
-  const amountInCents = amount * 100;
+  console.log("SQL Query: UPDATE invoices SET customer_id = " + customerId + ", amount = " + amountInCents + ", status = " + status + " WHERE id = " + uuid);
+
   
   try {
     await sql`
