@@ -151,13 +151,13 @@ export default function EditInvoiceForm({
             </div>
           ) : null}
         </fieldset>
-        {state.errors ? (
+        {(state.errors?.amount || state.errors?.customerId || state.errors?.status) ? (
           <div
             id="form-error"
             aria-live="polite"
             className="mt-2 text-sm text-red-500"
           >
-            <p>Missing Fields. Failed to Create Invoice.</p>
+            <p>Missing Fields. Failed to Edit Invoice.</p>
           </div>
         ) : null}
       </div>
