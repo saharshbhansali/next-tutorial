@@ -141,7 +141,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             </div>
           ) : null}
         </fieldset>
-        {state.errors ? (
+        {state.message ? (
           <div
             id="form-error"
             aria-live="polite"
